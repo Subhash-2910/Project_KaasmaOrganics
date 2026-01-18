@@ -1,0 +1,101 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+html {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif;
+}
+
+body {
+  margin: 0;
+}
+
+.banner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #2f7d32;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  font-size: 14px;
+  z-index: 1001;
+}
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 60px;
+  background: white;
+  position: fixed;
+  top: 44px; /* banner height */
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.nav-links {
+  display: flex;
+  gap: 30px;
+  list-style: none;
+}
+
+.nav-icons {
+  display: flex;
+  gap: 20px;
+  font-size: 20px;
+}
+.main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 80px 60px;
+  background: #f4faf4;
+}
+
+.main-left {
+  max-width: 50%;
+}
+
+.main h1 {
+  font-size: 56px;
+  color: #0f172a;
+}
+
+.main h1 span {
+  color: #2f7d32;
+}
+
+.badge {
+  background: #e6f4ea;
+  color: #2f7d32;
+  padding: 8px 14px;
+  border-radius: 20px;
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+.main-buttons {
+  margin-top: 30px;
+  display: flex;
+  gap: 20px;
+}
+
+.shopNow {
+  background: #2f7d32;
+  color: white;
+  padding: 14px 28px;
+  border-radius: 8px;
+  border: none;
+}
+
+.learnMore {
+  background: transparent;
+  border: 2px solid #2f7d32;
+  color: #2f7d32;
+  padding: 14px 28px;
+  border-radius: 8px;
+}
