@@ -27,7 +27,6 @@ function Navbar() {
           <FiShoppingCart />
         </div>
       </nav>
-      ;
     </div>
   );
 }
