@@ -4,6 +4,7 @@ import Main from "./Main";
 import Footer from "./Footer";
 import CategorySection from "./CategorySection";
 import Benefits from "./Benifits";
+import FeaturedProducts from "./FeaturedProducts";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <Navbar />
       <Main />
       <CategorySection />
+      <FeaturedProducts />
       <Benefits />
       <Footer />
     </div>
