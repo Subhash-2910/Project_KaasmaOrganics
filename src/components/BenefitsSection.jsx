@@ -24,7 +24,7 @@ const benefits = [
   },
 ];
 
-function Benefits() {
+function BenefitsSection() {
   return (
     <section className="benefits">
       <h2>Why Choose Kaasma Organics</h2>
@@ -46,4 +46,4 @@ function Benefits() {
   );
 }
 
-export default Benefits;
+export default BenefitsSection;
