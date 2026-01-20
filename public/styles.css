@@ -258,3 +258,62 @@ body {
 }
 
 /* footer css-end */
+
+/* benifits css-start */
+.benefits {
+  padding: 90px 60px;
+  background: #ffffff;
+  text-align: center;
+}
+
+.benefits h2 {
+  font-size: 32px;
+  color: #166534;
+  margin-bottom: 14px;
+}
+
+.benefits > p {
+  max-width: 680px;
+  margin: 0 auto 60px;
+  color: #6b7280;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+}
+
+.benefit-card {
+  max-width: 260px;
+  margin: 0 auto;
+}
+
+/* .icon-circle {
+  width: 88px;
+  height: 88px;
+  background: #e6f4ea;
+  color: #2f7d32;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 34px;
+  margin: 0 auto 20px;
+} */
+
+.benefit-card h3 {
+  font-size: 20px;
+  color: #14532d;
+  margin-bottom: 10px;
+}
+
+.benefit-card p {
+  font-size: 15px;
+  color: #6b7280;
+  line-height: 1.6;
+}
+/* benifits css-end */
+
