@@ -1,6 +1,7 @@
 import React from "react";
 import { FiSearch, FiUser, FiShoppingCart } from "react-icons/fi";
 import { Link } from "react-router-dom";
+import logo from "../assets1/images/kasmalogo.jpeg"
 
 function Navbar() {
   return (
@@ -9,9 +10,9 @@ function Navbar() {
         🌿 Free Shipping on Orders Above $50 | 100% Organic Certified Products
       </div>
       <nav className="navbar">
-        <div>
-          <img src="/logo.svg" alt="logo" />
-          <span>Kaasma</span>
+        <div className="logo">
+          <img src={logo} alt="logo" />
+          <span>Kasma Organics</span>
         </div>
 
         <ul className="nav-links">

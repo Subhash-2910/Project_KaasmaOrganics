@@ -8,7 +8,7 @@ export default function Footer() {
         <div className="footer-brand">
           <div className="brand">
             <span className="brand-icon">🌿</span>
-            <span className="brand-text">Kaasma Organics</span>
+            <span className="brand-text">Kasma Organics</span>
           </div>
           <p>
             Your trusted source for premium organic fruit and vegetable
