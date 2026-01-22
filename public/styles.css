@@ -163,7 +163,11 @@ body {
   align-items: center;
   justify-content: center;
 }
-
+.brand-icon img{
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
 .footer-brand p {
   margin-top: 20px;
   line-height: 1.6;
