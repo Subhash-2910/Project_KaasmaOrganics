@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation } from "swiper/modules";
+import { useCart } from "../context/CartContext.jsx";
+import { FiPlus, FiMinus } from "react-icons/fi";
 
 import "swiper/css";
 import "swiper/css/pagination";
@@ -9,6 +11,27 @@ import "swiper/css/navigation";
 
 function ProductCard(props) {
   const swiperRef = useRef(null);
+  const { addToCart } = useCart();
+  const [selectedWeight, setSelectedWeight] = useState('100g');
+  const [quantity, setQuantity] = useState(1);
+
+  const weightOptions = [
+    { value: '50g', price: props.price * 0.5 },
+    { value: '100g', price: props.price },
+    { value: '250g', price: props.price * 2.3 },
+    { value: '500g', price: props.price * 4.5 }
+  ];
+
+  const handleAddToCart = () => {
+    const product = {
+      id: props.id || Math.random().toString(36).substr(2, 9),
+      name: props.name,
+      price: weightOptions.find(opt => opt.value === selectedWeight).price,
+      image: props.image,
+      category: props.category
+    };
+    addToCart(product, quantity, selectedWeight);
+  };
 
   return (
     <div className="product-card">
@@ -57,19 +80,53 @@ function ProductCard(props) {
         <p className="desc">{props.desc}</p>
 
         <div className="rating">
-          {"★".repeat(props.rating)}
-          {"☆".repeat(5 - props.rating)}
-          <span>({props.reviews})</span>
+          {"★".repeat(props.rating || 5)}
+          {"☆".repeat(5 - (props.rating || 5))}
+          <span>({props.reviews || 0})</span>
         </div>
 
-        <div className="price">
-          <span className="current">${props.price}</span>
-          {props.oldPrice && (
-            <span className="old">${props.oldPrice}</span>
-          )}
+        <div className="weight-selector">
+          <label>Select Weight:</label>
+          <div className="weight-options">
+            {weightOptions.map((option) => (
+              <button
+                key={option.value}
+                className={`weight-option ${
+                  selectedWeight === option.value ? 'active' : ''
+                }`}
+                onClick={() => setSelectedWeight(option.value)}
+                type="button"
+              >
+                {option.value}
+                <span>₹{option.price.toFixed(2)}</span>
+              </button>
+            ))}
+          </div>
         </div>
 
-        <button className="add-cart">Add to Cart</button>
+        <div className="quantity-selector">
+          <button 
+            onClick={() => setQuantity(prev => Math.max(1, prev - 1))}
+            type="button"
+            disabled={quantity <= 1}
+          >
+            <FiMinus size={14} />
+          </button>
+          <span>{quantity}</span>
+          <button 
+            onClick={() => setQuantity(prev => prev + 1)}
+            type="button"
+          >
+            <FiPlus size={14} />
+          </button>
+        </div>
+
+        <button 
+          className="add-cart" 
+          onClick={handleAddToCart}
+        >
+          Add to Cart - ₹{weightOptions.find(opt => opt.value === selectedWeight).price.toFixed(2)}
+        </button>
       </div>
     </div>
   );
