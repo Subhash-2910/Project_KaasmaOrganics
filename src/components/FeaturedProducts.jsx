@@ -16,6 +16,7 @@ function createCard(fProduct, index) {
       rating={fProduct.rating}
       reviews={fProduct.reviews}
       image={fProduct.image}
+      backImage={fProduct.backImage}
       offer={fProduct.offer}
     />
   );

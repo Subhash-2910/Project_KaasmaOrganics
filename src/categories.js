@@ -1,6 +1,10 @@
 // import { FiApple, FiCoffee } from "react-icons/fi";
 // import { GiFruitBowl } from "react-icons/gi";
 // import { TbSalad } from "react-icons/tb";
+import fruitpowders from "./assets1/images/fruitpowders.jpeg";
+import fruitsnacks from "./assets1/images/fruitsnacks.jpeg";
+import vegiepowders from "./assets1/images/vegiepowders.jpeg";
+import vegiesnacks from "./assets1/images/vegiesnacks.jpeg";
 
 const categories = [
   {
@@ -9,28 +13,28 @@ const categories = [
     desc: "Nutrient-rich superfood powders",
     // icon: <TbSalad />,
     // icon: <FiApple />,
-    image: "/images/fruit-powder.jpg",
+    image: fruitpowders,
   },
   {
     id: 2,
     title: "Vegetable Powders",
     desc: "Green superfood blends",
     // icon: <TbSalad />,
-    image: "/images/veg-powder.jpg",
+    image:vegiepowders,
   },
   {
     id: 3,
     title: "Fruit Snacks",
     desc: "Delicious dried fruit treats",
     // icon: <GiFruitBowl />,
-    image: "/images/fruit-snacks.jpg",
+    image: fruitsnacks,
   },
   {
     id: 4,
     title: "Vegetable Snacks",
     desc: "Healthy veggie chips & crisps",
     // icon: <FiCoffee />,
-    image: "/images/veg-snacks.jpg",
+    image: vegiesnacks,
   },
 ];
 

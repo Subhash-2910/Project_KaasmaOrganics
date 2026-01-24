@@ -1,4 +1,5 @@
 import { FiFacebook, FiInstagram, FiTwitter } from "react-icons/fi";
+import logo from "../assets1/images/kasmalogo.jpeg"
 
 export default function Footer() {
   return (
@@ -7,8 +8,8 @@ export default function Footer() {
         {/* Brand */}
         <div className="footer-brand">
           <div className="brand">
-            <span className="brand-icon">🌿</span>
-            <span className="brand-text">Kaasma Organics</span>
+            <span className="brand-icon"><img src={logo} alt="" /></span>
+            <span className="brand-text">Kasma Organics</span>
           </div>
           <p>
             Your trusted source for premium organic fruit and vegetable

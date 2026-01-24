@@ -1,57 +1,72 @@
+import beetroot1 from "./assets1/images/beetroot1.png";
+import beetroot2 from "./assets1/images/beetroot2.png";
+import onion1 from "./assets1/images/onion1.png";
+import onion2 from "./assets1/images/onion2.png";
+import orange1 from "./assets1/images/orange1.png";
+import orange2 from "./assets1/images/orange2.png";
+import pine1 from "./assets1/images/pine1.png";
+import pine2 from "./assets1/images/pine2.png";
+import Banana1 from "./assets1/images/Banana1.png";
+import Banana2 from "./assets1/images/Banana2.png";
 const featuredProducts = [
   {
     name: "Organic Beetroot Powder",
     category: "Vegetable Powders",
-    desc: "Pure organic beetroot powder, rich in antioxidants and nitrates",
+    desc: "Naturally vibrant and earthy beetroot goodness.",
     price: 24.99,
     oldPrice: 32.99,
     rating: 4,
     reviews: 324,
-    image: "/images/beetroot.jpg",
+    image: beetroot1,
+    backImage:beetroot2,
     offer: "24% OFF",
   },
   {
-    name: "Kale & Spinach Chips",
-    category: "Vegetable Snacks",
-    desc: "Crispy baked kale and spinach chips with sea salt",
+    name: "Organic Onion Powder",
+    category: "Vegetable Powders",
+    desc: "Rich onion flavor, perfect for everyday cooking",
     price: 12.99,
     oldPrice: 16.99,
     rating: 5,
     reviews: 567,
-    image: "/images/kale-chips.jpg",
+    image: onion1,
+    backImage:onion2,
     offer: "24% OFF",
   },
   {
-    name: "Mixed Berry Powder Blend",
+    name: "Organic Orange Powder",
     category: "Fruit Powders",
-    desc: "Blend of organic strawberry, blueberry, and raspberry powder",
+    desc: "Fresh and perfect citrus taste from real fresh oranges.",
     price: 28.99,
     oldPrice: 36.99,
     rating: 4,
     reviews: 892,
-    image: "/images/berry-powder.jpg",
+    image: orange1,
+    backImage: orange2,
     offer: "22% OFF",
   },
   {
-    name: "Dried Mango Slices",
-    category: "Fruit Snacks",
-    desc: "Sweet and chewy organic dried mango slices, no added sugar",
+    name: "Organic Pineapple powder",
+    category: "Fruit Powders",
+    desc: "Tropical pineapple flavor with natural sweetness",
     price: 15.99,
     oldPrice: null,
     rating: 4,
     reviews: 445,
-    image: "/images/mango.jpg",
+    image: pine1,
+    backImage:pine2,
     offer: null,
   },
   {
-    name: "Dried Mango Slices",
-    category: "Fruit Snacks",
-    desc: "Sweet and chewy organic dried mango slices, no added sugar",
+    name: "Organic Banana Powder",
+    category: "Fruit Powders",
+    desc: " Smooth, naturally sweet banana powder",
     price: 15.99,
     oldPrice: null,
     rating: 4,
     reviews: 445,
-    image: "/images/mango.jpg",
+    image: Banana1,
+    backImage: Banana2,
     offer: null,
   },
 ];

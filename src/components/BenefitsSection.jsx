@@ -27,7 +27,7 @@ const benefits = [
 function BenefitsSection() {
   return (
     <section className="benefits">
-      <h2>Why Choose Kaasma Organics</h2>
+      <h2>Why Choose Kasma Organics</h2>
       <p>
         We bring you the purest organic products, carefully crafted from
         nature's finest ingredients

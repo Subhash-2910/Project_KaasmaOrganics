@@ -107,7 +107,7 @@ body {
   text-align: center;
 }
 .category-card {
-  height: 220px;
+  height: 200px;
   border-radius: 20px;
   background-size: cover;
   background-position: center;
@@ -163,7 +163,11 @@ body {
   align-items: center;
   justify-content: center;
 }
-
+.brand-icon img{
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
 .footer-brand p {
   margin-top: 20px;
   line-height: 1.6;
@@ -370,18 +374,33 @@ body {
 }
 
 .image-box {
+  width: 100%;
+  height:400px;
+  overflow: hidden;
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f9fafb;
 }
 
 .image-box img {
   width: 100%;
-  height: 220px;
-  object-fit: cover;
+  height: 400px;
+  object-fit: contain;
+  object-position: center;
 }
-
+.swiper-pagination-bullet {
+  background: #2f7d32;
+}
+.swiper {
+  width: 100%;
+  height: 100%;
+}
 .badge {
   position: absolute;
   top: 12px;
+  z-index: 20;
   padding: 6px 12px;
   border-radius: 20px;
   font-size: 12px;
@@ -461,3 +480,95 @@ body {
 }
 /* productCard css-end */
 
+/* LOGO FIX */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo img {
+  height: 48px;      /* 👈 CONTROL SIZE HERE */
+  width: auto;
+  object-fit: contain;
+}
+
+.logo span {
+  font-size: 22px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.main-right img {
+  width: 100%;
+  max-width: 600px;  /* desktop size */
+  height: auto;
+  filter: drop-shadow(0 20px 40px rgba(0,0,0,0.3));
+}
+
+@media (max-width: 768px) {
+  .main-right img {
+    max-width: 280px; /* mobile size */
+  }
+}
+
+
+/* Swiper arrows */
+/* Smaller arrow buttons */
+/*.swiper-button-next,
+.swiper-button-prev {
+  width: 22px;
+  height: 22px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 50%;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  font-size: 7px;
+}*/
+
+/* Arrow icon size */
+/*.swiper-button-next::after,
+.swiper-button-prev::after {
+  font-size: 7px;
+  font-weight: bold;
+  color: #2f7d32;
+}
+
+/* Adjust position */
+/*.swiper-button-prev {
+  left: 3px;
+}
+
+.swiper-button-next {
+  right: 3px;
+}*/
+/* Smaller arrow buttons */
+.root {
+  --swiper-navigation-size:10px;
+}
+
+/* FORCE shrink arrow buttons */
+.swiper-button-prev,
+.swiper-button-next {
+  transform: translateY(-50%) scale(0.55) !important; /* 🔥 THIS LINE */
+  width: 22px;
+  height: 22px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 50%;
+  z-index: 6;
+}
+
+/* Position */
+.swiper-button-prev {
+  left: 6px;
+}
+
+.swiper-button-next {
+  right: 6px;
+}
+
+/* Optional: lighter arrows */
+.swiper-button-prev::after,
+.swiper-button-next::after {
+  color: #2f7d32;
+  font-weight: bold;
+}

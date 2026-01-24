@@ -1,4 +1,5 @@
 import React from "react";
+import mainimage from "../assets1/images/kasma.jpeg"
 
 function Main() {
   return (
@@ -23,7 +24,7 @@ function Main() {
       </div>
 
       <div className="main-right">
-        <img src="/main-tea.png" alt="organic tea" />
+        <img src={mainimage} alt="organic tea" />
       </div>
     </section>
   );
