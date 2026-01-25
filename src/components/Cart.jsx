@@ -46,24 +46,28 @@ const Cart = ({ isOpen, onClose }) => {
                     className="cart-item-image" 
                   />
                   <div className="cart-item-details">
-                    <h3>{item.name}</h3>
-                    <p className="weight">{item.weight}</p>
-                    <p className="price">₹{(item.price * item.quantity).toFixed(2)}</p>
+                    <h3>{item.name || 'Unknown Product'}</h3>
+                    <p className="weight">{item.weight || 'N/A'}</p>
+                    <p className="price">
+                      ₹{((parseFloat(item.price) || 0) * (parseInt(item.quantity) || 1)).toFixed(2)}
+                    </p>
                     <div className="quantity-selector">
                       <button 
                         onClick={(e) => {
                           e.stopPropagation();
-                          updateQuantity(item.id, item.weight, item.quantity - 1);
+                          const currentQty = parseInt(item.quantity) || 1;
+                          updateQuantity(item.id || item._id, item.weight, currentQty - 1);
                         }}
-                        disabled={item.quantity <= 1}
+                        disabled={(parseInt(item.quantity) || 1) <= 1}
                       >
                         <FiMinus size={14} />
                       </button>
-                      <span>{item.quantity}</span>
+                      <span>{parseInt(item.quantity) || 1}</span>
                       <button 
                         onClick={(e) => {
                           e.stopPropagation();
-                          updateQuantity(item.id, item.weight, item.quantity + 1);
+                          const currentQty = parseInt(item.quantity) || 1;
+                          updateQuantity(item.id || item._id, item.weight, currentQty + 1);
                         }}
                       >
                         <FiPlus size={14} />
@@ -74,7 +78,7 @@ const Cart = ({ isOpen, onClose }) => {
                     className="remove-btn"
                     onClick={(e) => {
                       e.stopPropagation();
-                      removeFromCart(item.id, item.weight);
+                      removeFromCart(item.id || item._id, item.weight);
                     }}
                   >
                     <FiTrash2 size={18} />

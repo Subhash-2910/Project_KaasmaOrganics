@@ -12,25 +12,55 @@ import "swiper/css/navigation";
 function ProductCard(props) {
   const swiperRef = useRef(null);
   const { addToCart } = useCart();
-  const [selectedWeight, setSelectedWeight] = useState('100g');
+  
+  // Handle weight options from backend (weightOptions array) or static data (price)
+  const getWeightOptions = () => {
+    if (props.weightOptions && Array.isArray(props.weightOptions) && props.weightOptions.length > 0) {
+      // Use weightOptions from backend
+      return props.weightOptions.map(opt => ({
+        value: opt.weight,
+        price: opt.price
+      }));
+    } else if (props.price && !isNaN(parseFloat(props.price))) {
+      // Fallback to calculated prices from single price
+      const basePrice = parseFloat(props.price);
+      return [
+        { value: '50g', price: basePrice * 0.5 },
+        { value: '100g', price: basePrice },
+        { value: '250g', price: basePrice * 2.3 },
+        { value: '500g', price: basePrice * 4.5 }
+      ];
+    } else {
+      // Default fallback
+      return [
+        { value: '100g', price: 0 }
+      ];
+    }
+  };
+
+  const weightOptions = getWeightOptions();
+  const defaultWeight = weightOptions[0]?.value || '100g';
+  const [selectedWeight, setSelectedWeight] = useState(defaultWeight);
   const [quantity, setQuantity] = useState(1);
 
-  const weightOptions = [
-    { value: '50g', price: props.price * 0.5 },
-    { value: '100g', price: props.price },
-    { value: '250g', price: props.price * 2.3 },
-    { value: '500g', price: props.price * 4.5 }
-  ];
-
   const handleAddToCart = () => {
+    const selectedOption = weightOptions.find(opt => opt.value === selectedWeight);
+    if (!selectedOption || !selectedOption.price || isNaN(selectedOption.price)) {
+      console.error('Invalid weight or price selected');
+      return;
+    }
+    
     const product = {
-      id: props.id || Math.random().toString(36).substr(2, 9),
+      id: props.id || props._id || Math.random().toString(36).substr(2, 9),
+      _id: props._id || props.id,
       name: props.name,
-      price: weightOptions.find(opt => opt.value === selectedWeight).price,
+      price: parseFloat(selectedOption.price),
       image: props.image,
-      category: props.category
+      category: props.category,
+      weight: selectedWeight,
+      quantity: parseInt(quantity) || 1
     };
-    addToCart(product, quantity, selectedWeight);
+    addToCart(product);
   };
 
   return (
@@ -88,19 +118,22 @@ function ProductCard(props) {
         <div className="weight-selector">
           <label>Select Weight:</label>
           <div className="weight-options">
-            {weightOptions.map((option) => (
-              <button
-                key={option.value}
-                className={`weight-option ${
-                  selectedWeight === option.value ? 'active' : ''
-                }`}
-                onClick={() => setSelectedWeight(option.value)}
-                type="button"
-              >
-                {option.value}
-                <span>₹{option.price.toFixed(2)}</span>
-              </button>
-            ))}
+            {weightOptions.map((option) => {
+              const price = parseFloat(option.price) || 0;
+              return (
+                <button
+                  key={option.value}
+                  className={`weight-option ${
+                    selectedWeight === option.value ? 'active' : ''
+                  }`}
+                  onClick={() => setSelectedWeight(option.value)}
+                  type="button"
+                >
+                  {option.value}
+                  <span>₹{price.toFixed(2)}</span>
+                </button>
+              );
+            })}
           </div>
         </div>
 
@@ -125,7 +158,7 @@ function ProductCard(props) {
           className="add-cart" 
           onClick={handleAddToCart}
         >
-          Add to Cart - ₹{weightOptions.find(opt => opt.value === selectedWeight).price.toFixed(2)}
+          Add to Cart - ₹{(weightOptions.find(opt => opt.value === selectedWeight)?.price || 0).toFixed(2)}
         </button>
       </div>
     </div>
