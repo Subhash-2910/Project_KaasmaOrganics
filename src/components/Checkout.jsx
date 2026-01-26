@@ -3,7 +3,7 @@ import { useCart } from '../context/CartContext.jsx';
 import { FiArrowLeft, FiCheckCircle, FiLoader } from 'react-icons/fi';
 
 const Checkout = ({ onBack }) => {
-  const { cart, cartTotal, clearCart } = useCart();
+  const { cart, cartTotal, clearCart, createOrder, processPayment, loading, error } = useCart();
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
     name: '',
@@ -19,7 +19,7 @@ const Checkout = ({ onBack }) => {
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [orderPlaced, setOrderPlaced] = useState(false);
-  const [orderId] = useState(`ORD-${Math.floor(100000 + Math.random() * 900000)}`);
+  const [createdOrder, setCreatedOrder] = useState(null);
 
   const validateEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   const validatePhone = (phone) => /^\d{10}$/.test(phone);
@@ -72,24 +72,84 @@ const Checkout = ({ onBack }) => {
     } else {
       setIsSubmitting(true);
       try {
-        if (formData.paymentMethod === 'upi') {
-          await new Promise(resolve => setTimeout(resolve, 1500));
+        // Validate cart has items
+        if (!cart || cart.length === 0) {
+          setErrors(prev => ({ 
+            ...prev, 
+            payment: 'Your cart is empty. Please add items to cart before placing an order.' 
+          }));
+          setIsSubmitting(false);
+          return;
         }
-        
-        console.log('Order submitted:', { 
-          orderId, 
-          ...formData, 
-          items: cart, 
-          total: cartTotal,
-          status: 'completed',
-          date: new Date().toISOString()
+
+        // Validate and prepare cart items
+        const validItems = cart
+          .filter(item => {
+            // Filter out invalid items
+            const hasId = item.id || item._id;
+            const hasName = item.name;
+            const hasWeight = item.weight;
+            const hasQuantity = item.quantity && parseInt(item.quantity) > 0;
+            const hasPrice = item.price && !isNaN(parseFloat(item.price)) && parseFloat(item.price) > 0;
+            
+            if (!hasId || !hasName || !hasWeight || !hasQuantity || !hasPrice) {
+              console.warn('Invalid cart item filtered out:', item);
+              return false;
+            }
+            return true;
+          })
+          .map(item => ({
+            productId: item.id || item._id,
+            name: item.name,
+            weight: item.weight,
+            quantity: parseInt(item.quantity) || 1,
+            price: parseFloat(item.price) || 0
+          }));
+
+        if (validItems.length === 0) {
+          setErrors(prev => ({ 
+            ...prev, 
+            payment: 'No valid items in cart. Please add items to cart before placing an order.' 
+          }));
+          setIsSubmitting(false);
+          return;
+        }
+
+        // Create order in backend
+        const orderData = {
+          userId: 'guest', // You can update this with actual user ID when authentication is implemented
+          items: validItems,
+          shippingAddress: {
+            name: formData.name,
+            email: formData.email,
+            phone: formData.phone,
+            address: formData.address,
+            city: formData.city,
+            state: formData.state,
+            pincode: formData.pincode
+          },
+          paymentMethod: formData.paymentMethod,
+          upiId: formData.paymentMethod === 'upi' ? formData.upiId : undefined
+        };
+
+        const order = await createOrder(orderData);
+        setCreatedOrder(order);
+
+        // Process payment
+        await processPayment({
+          orderId: order._id,
+          paymentMethod: formData.paymentMethod,
+          upiId: formData.paymentMethod === 'upi' ? formData.upiId : undefined
         });
-        
+
         setOrderPlaced(true);
         clearCart();
       } catch (error) {
-        console.error('Payment failed:', error);
-        setErrors(prev => ({ ...prev, payment: 'Payment processing failed. Please try again.' }));
+        console.error('Order/Payment failed:', error);
+        setErrors(prev => ({ 
+          ...prev, 
+          payment: error.message || 'Order processing failed. Please try again.' 
+        }));
       } finally {
         setIsSubmitting(false);
       }
@@ -101,7 +161,8 @@ const Checkout = ({ onBack }) => {
       <div className="order-confirmation">
         <FiCheckCircle size={64} className="success-icon" />
         <h2>Order Placed Successfully!</h2>
-        <p>Your order ID is: <strong>{orderId}</strong></p>
+        <p>Your order ID is: <strong>{createdOrder?.orderId}</strong></p>
+        <p>Tracking ID: <strong>{createdOrder?.trackingId}</strong></p>
         <p>We've sent a confirmation to {formData.email}</p>
         <div className="order-details">
           <h3>Order Summary</h3>
@@ -132,6 +193,12 @@ const Checkout = ({ onBack }) => {
         <FiArrowLeft /> Back to Cart
       </button>
       
+      {error && (
+        <div className="error-message global-error">
+          {error}
+        </div>
+      )}
+      
       <h2>{step === 1 ? 'Shipping Information' : 'Payment Method'}</h2>
       
       <form onSubmit={handleSubmit} className="checkout-form">
@@ -146,6 +213,7 @@ const Checkout = ({ onBack }) => {
                 onChange={handleChange}
                 className={errors.name ? 'error' : ''}
                 required
+                disabled={loading || isSubmitting}
               />
               {errors.name && <span className="error-message">{errors.name}</span>}
             </div>
@@ -158,6 +226,7 @@ const Checkout = ({ onBack }) => {
                 onChange={handleChange}
                 className={errors.email ? 'error' : ''}
                 required
+                disabled={loading || isSubmitting}
               />
               {errors.email && <span className="error-message">{errors.email}</span>}
             </div>
@@ -170,6 +239,7 @@ const Checkout = ({ onBack }) => {
                 onChange={handleChange}
                 className={errors.phone ? 'error' : ''}
                 required
+                disabled={loading || isSubmitting}
               />
               {errors.phone && <span className="error-message">{errors.phone}</span>}
             </div>
@@ -181,6 +251,7 @@ const Checkout = ({ onBack }) => {
                 onChange={handleChange}
                 className={errors.address ? 'error' : ''}
                 required
+                disabled={loading || isSubmitting}
               />
               {errors.address && <span className="error-message">{errors.address}</span>}
             </div>
@@ -194,6 +265,7 @@ const Checkout = ({ onBack }) => {
                   onChange={handleChange}
                   className={errors.city ? 'error' : ''}
                   required
+                  disabled={loading || isSubmitting}
                 />
                 {errors.city && <span className="error-message">{errors.city}</span>}
               </div>
@@ -206,6 +278,7 @@ const Checkout = ({ onBack }) => {
                   onChange={handleChange}
                   className={errors.state ? 'error' : ''}
                   required
+                  disabled={loading || isSubmitting}
                 />
                 {errors.state && <span className="error-message">{errors.state}</span>}
               </div>
@@ -218,6 +291,7 @@ const Checkout = ({ onBack }) => {
                   onChange={handleChange}
                   className={errors.pincode ? 'error' : ''}
                   required
+                  disabled={loading || isSubmitting}
                 />
                 {errors.pincode && <span className="error-message">{errors.pincode}</span>}
               </div>
@@ -234,6 +308,7 @@ const Checkout = ({ onBack }) => {
                 value="cod"
                 checked={formData.paymentMethod === 'cod'}
                 onChange={handleChange}
+                disabled={loading || isSubmitting}
               />
               <label htmlFor="cod">Cash on Delivery</label>
             </div>
@@ -245,6 +320,7 @@ const Checkout = ({ onBack }) => {
                 value="upi"
                 checked={formData.paymentMethod === 'upi'}
                 onChange={handleChange}
+                disabled={loading || isSubmitting}
               />
               <label htmlFor="upi">UPI Payment</label>
             </div>
@@ -259,6 +335,7 @@ const Checkout = ({ onBack }) => {
                     onChange={handleChange}
                     placeholder="yourname@upi"
                     required
+                    disabled={loading || isSubmitting}
                   />
                   {errors.upiId && <span className="error-message">{errors.upiId}</span>}
                 </div>
@@ -283,7 +360,11 @@ const Checkout = ({ onBack }) => {
           </div>
         </div>
 
-        <button type="submit" className="place-order-btn" disabled={isSubmitting}>
+        {errors.payment && (
+          <div className="error-message">{errors.payment}</div>
+        )}
+
+        <button type="submit" className="place-order-btn" disabled={isSubmitting || loading}>
           {isSubmitting ? (
             <>
               <FiLoader className="animate-spin" />

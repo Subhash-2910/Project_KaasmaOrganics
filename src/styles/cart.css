@@ -827,6 +827,17 @@
   border-bottom: 1px solid #dee2e6;
 }
 
+/* Global Error Message */
+.global-error {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background-color: #fee;
+  border: 1px solid #fcc;
+  border-radius: 4px;
+  color: #c33;
+  font-weight: 500;
+}
+
 /* Cart Icon in Navbar */
 .cart-icon-container {
   position: relative;
