@@ -1,7 +1,15 @@
 import React from "react";
-import mainimage from "../assets1/images/kasma.jpeg"
+import mainimage from "../assets1/images/kasma.jpeg";
 
 function Main() {
+  const handleScroll = (e, id) => {
+    e.preventDefault();
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section className="main">
       <div className="main-left">
@@ -18,8 +26,8 @@ function Main() {
         </p>
 
         <div className="main-buttons">
-          <button className="shopNow">Shop Now</button>
-          <button className="learnMore">Learn More</button>
+          <button className="shopNow" onClick={(e) => handleScroll(e, 'shop')}>Shop Now</button>
+          <button className="learnMore" onClick={(e) => handleScroll(e, 'about')}>Learn More</button>
         </div>
       </div>
 
