@@ -16,8 +16,9 @@ function Navbar() {
 
   return (
     <div>
+      
       <div className="banner">
-        🌿 Free Shipping on Orders Above $50 | 100% Organic Certified Products
+         100% Organic Certified Products
       </div>
       <nav className="navbar">
         <div className="logo">

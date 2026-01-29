@@ -16,10 +16,11 @@ function Home() {
       <div id="shop">
         <CategorySection />
       </div>
+      <FeaturedProducts />
       <div id="about">
         <BenefitsSection />
       </div>
-      <FeaturedProducts />
+      
       <div id="contact">
         <Footer />
       </div>

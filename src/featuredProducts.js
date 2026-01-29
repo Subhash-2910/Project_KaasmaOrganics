@@ -22,6 +22,18 @@ const featuredProducts = [
     offer: "24% OFF",
   },
   {
+    name: "Organic Banana Powder",
+    category: "Fruit Powders",
+    desc: " Smooth ans fresh, naturally sweet banana powder",
+    price: 15.99,
+    oldPrice: null,
+    rating: 4,
+    reviews: 445,
+    image: Banana1,
+    backImage: Banana2,
+    offer: null,
+  },
+  {
     name: "Organic Onion Powder",
     category: "Vegetable Powders",
     desc: "Rich onion flavor, perfect for everyday cooking",
@@ -45,6 +57,8 @@ const featuredProducts = [
     backImage: orange2,
     offer: "22% OFF",
   },
+  
+  
   {
     name: "Organic Pineapple powder",
     category: "Fruit Powders",
@@ -55,18 +69,6 @@ const featuredProducts = [
     reviews: 445,
     image: pine1,
     backImage:pine2,
-    offer: null,
-  },
-  {
-    name: "Organic Banana Powder",
-    category: "Fruit Powders",
-    desc: " Smooth, naturally sweet banana powder",
-    price: 15.99,
-    oldPrice: null,
-    rating: 4,
-    reviews: 445,
-    image: Banana1,
-    backImage: Banana2,
     offer: null,
   },
 ];
