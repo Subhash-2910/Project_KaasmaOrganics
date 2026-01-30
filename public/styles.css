@@ -592,35 +592,6 @@ body {
   }
 }
 
-
-/* Swiper arrows */
-/* Smaller arrow buttons */
-/*.swiper-button-next,
-.swiper-button-prev {
-  width: 22px;
-  height: 22px;
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 50%;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-  font-size: 7px;
-}*/
-
-/* Arrow icon size */
-/*.swiper-button-next::after,
-.swiper-button-prev::after {
-  font-size: 7px;
-  font-weight: bold;
-  color: #2f7d32;
-}
-
-/* Adjust position */
-/*.swiper-button-prev {
-  left: 3px;
-}
-
-.swiper-button-next {
-  right: 3px;
-}*/
 /* Smaller arrow buttons */
 .root {
   --swiper-navigation-size:10px;
@@ -710,9 +681,6 @@ body {
   }
 }
 
-
-
-
 @media (max-width: 768px) {
   body {
     padding-top: 96px;
@@ -723,7 +691,7 @@ body {
   }
 
   .nav-links {
-    display: none; /* later you can add hamburger */
+    display: none;
   }
 
   .main {
@@ -740,36 +708,38 @@ body {
     font-size: 34px;
   }
 
-  
-
- 
-}
-@media (max-width: 768px) {
   .swiper-button-prev,
   .swiper-button-next {
     transform: translateY(-50%) scale(0.45) !important;
   }
 }
-
-/* Mobile only */
 @media (max-width: 650px) {
+  .featured {
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+  }
 
-  /* ================= GRID ================= */
+  .main {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  /* GRID */
   .product-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
+    gap: 10px;
     padding: 4px;
     align-items: stretch;
   }
 
-  /* ================= CARD ================= */
+  /* PRODUCT CARD */
   .product-card {
     display: flex;
     flex-direction: column;
     height: 100%;
     width: 100%;
     min-width: 0;
-    padding: 4px;              /* FINAL smallest value */
+    padding: 4px;
     border-radius: 12px;
   }
 
@@ -777,34 +747,25 @@ body {
     display: flex;
     flex-direction: column;
     flex: 1;
-    padding: 4px;              /* FINAL smallest value */
+    padding: 4px;
   }
 
-  /* ================= IMAGE ================= */
   .image-box {
     aspect-ratio: 1 / 1;
     margin-bottom: 4px;
     flex-shrink: 0;
   }
 
-  .product-image {
-    max-height: 260px;
-  }
-
-  /* ================= TEXT ================= */
   .product-body h3 {
     font-size: 13.5px;
-    line-height: 1.15;
+    line-height: 1;
     margin: 4px 0;
   }
 
-  .product-title {
-    font-size: 16px;
-  }
-
   .product-description,
-  .desc {
-    display: none;
+  .desc,
+  .product-card label {
+    display: none !important;
   }
 
   .rating {
@@ -825,38 +786,38 @@ body {
     font-size: 11px;
   }
 
-  /* ================= WEIGHT (DROPDOWN) ================= */
-  .weight-dropdown {
-    width: 100%;
-    padding: 6px 8px;
-    font-size: 11.5px;
-    border-radius: 12px;
+  /* WEIGHT */
+  .product-card select,
+  .product-card .weight-dropdown {
+    font-size: 10.5px !important;
+    padding: 4px 6px !important;
+    height: 28px !important;
+    border-radius: 8px !important;
   }
 
-  /* ================= QUANTITY ================= */
-  .quantity-selector {
-    gap: 4px;
-    margin-bottom: 4px;
+  /* QUANTITY */
+  .product-card .quantity-selector {
+    gap: 4px !important;
+    margin: 6px 0 !important;
   }
 
-  .quantity-selector button {
-    width: 24px;
-    height: 24px;
-    font-size: 11px;
+  .product-card .quantity-selector button {
+    width: 22px !important;
+    height: 22px !important;
+    font-size: 10px !important;
   }
 
-  .quantity-selector span {
-    min-width: 24px;
-    font-size: 11px;
+  .product-card .quantity-selector span {
+    min-width: 22px !important;
+    font-size: 10px !important;
   }
 
-  /* ================= ADD TO CART ================= */
+  /* ADD TO CART */
   .add-cart {
-    margin-top: auto;          /* keeps same height cards */
-    padding: 5px 6px;          /* FINAL smallest */
-    font-size: 11px;           /* FINAL smallest */
-    line-height: 1.1;
-    border-radius: 7px;
+    margin-top: auto;
+    font-size: 11px !important;
+    padding: 6px 8px !important;
+    border-radius: 8px !important;
   }
 
   /* ================= HERO ================= */
@@ -920,87 +881,54 @@ body {
     margin-top: 8px;
   }
 
-  /* ================= BENEFITS ================= */
+  /* BENEFITS */
   .benefits {
     padding: 32px 16px 24px;
   }
 
-  .benefits h2,
-  .benefits > h1,
-  .benefits > h3 {
-    font-size: 21px;
-    margin-bottom: 4px;
+  .benefits-grid {
+    grid-template-columns: 1fr;
+  }
+   /* ===== BENEFITS SECTION ===== */
+  .benefits {
+    padding: 20px 12px;   /* reduce section height */
+  }
+
+  .benefits h2 {
+    font-size: 18px;
+    margin-bottom: 6px;
   }
 
   .benefits > p {
-    font-size: 13px;
-    margin-bottom: 18px;
-    color: #4b5563;
+    font-size: 12.5px;
+    margin-bottom: 14px;
+    line-height: 1.4;
   }
 
+  /* ===== BENEFITS GRID ===== */
   .benefits-grid {
-    grid-template-columns: 1fr;
-    gap: 12px;
+    gap: 8px;   /* tighter spacing */
   }
 
+  /* ===== BENEFIT CARD ===== */
   .benefit-card {
-    max-width: 100%;
-    padding: 12px 14px;
-    border-radius: 14px;
-    background: #fbfdfb;
-    text-align: left;
-    box-shadow: none;
+    padding: 10px 12px;   /* 🔥 key reduction */
+    border-radius: 12px;
   }
 
   .benefit-card h3 {
-    font-size: 14.5px;
-    font-weight: 600;
-    margin-bottom: 4px;
+    font-size: 13.5px;
+    margin-bottom: 3px;
   }
 
   .benefit-card p {
-    font-size: 12.8px;
-    line-height: 1.4;
-    color: #6b7280;
+    font-size: 12px;
+    line-height: 1.35;
   }
 
-  .benefit-card:not(:last-child) {
-    border-bottom: 1px solid #e5e7eb;
-    padding-bottom: 14px;
-  }
-}
-/* =========================
-   CATEGORY SECTION – BASE
-========================= */
+  /* FOOTER */
 
-
-.category-section {
-  padding: 60px 20px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.category-title {
-  font-size: 32px;
-  text-align: center;
-  color: #0f172a;
-}
-
-.category-subtitle {
-  text-align: center;
-  color: #6b7280;
-  margin-top: 8px;
-  margin-bottom: 40px;
-}
-
-
-
-
-/* =========================
-   FOOTER – COMPACT MOBILE
-========================= */
-@media (max-width: 650px) {
-
+  
   .footer {
     padding: 20px 14px;
   }
@@ -1049,25 +977,21 @@ body {
     font-size: 13px;
     margin-bottom: 8px;
   }
-
   .newsletter-input input {
     height: 36px;
     font-size: 13px;
   }
-
   .newsletter-input button {
     height: 36px;
     font-size: 13px;
     padding: 0 14px;
   }
-
   /* Social icons smaller */
   .social-icons span {
     width: 34px;
     height: 34px;
     font-size: 16px;
   }
-
   /* Footer bottom */
   .footer-bottom {
     margin-top: 14px;
@@ -1076,269 +1000,14 @@ body {
     line-height: 1.4;
   }
 }
-
-
-@media (max-width: 650px) {
-
-  /* ===== SELECT WEIGHT TEXT ===== */
-  .product-card .weight-selector label {
-    font-size: 10px !important;
-    line-height: 1.1 !important;
-    margin-bottom: 2px !important;
-  }
-
-  /* ===== DROPDOWN ===== */
-  .product-card select,
-  .product-card .weight-dropdown {
-    font-size: 10.5px !important;
-    padding: 4px 6px !important;
-    height: 28px !important;
-    border-radius: 8px !important;
-  }
-
-  /* ===== QUANTITY CONTAINER ===== */
-  .product-card .quantity-selector {
-    gap: 4px !important;
-    margin: 6px 0 !important;
-  }
-
-  /* ===== QUANTITY BUTTONS ===== */
-  .product-card .quantity-selector button {
-    width: 22px !important;
-    height: 22px !important;
-    font-size: 10px !important;
-    padding: 0 !important;
-  }
-
-  /* ===== QUANTITY NUMBER ===== */
-  .product-card .quantity-selector span {
-    min-width: 22px !important;
-    font-size: 10px !important;
-  }
-
-  /* ===== ADD TO CART BUTTON ===== */
-  .product-card .add-cart {
-    font-size: 11px !important;
-    padding: 6px 8px !important;
-    border-radius: 8px !important;
-  }
-}
-/*for hiding select weight text for mobiles*/
-@media (max-width: 650px) {
-  .product-card label {
-    display: none !important;
-  }
-}
-
-
-
-
-
-
-/* =========================
-   ULTRA-SMALL PHONES (≤360px)
-   SAME LOOK, TIGHTER FIT
-========================= */
-@media (max-width: 360px) {
-
-  /* ===== CATEGORY GRID ===== */
-
-
-  .category-title {
-    font-size: 15px;
-  }
-
-  .category-subtitle {
-    font-size: 5px;
-    margin-bottom: 20px;
-  }
-
-  /* ===== PRODUCT CARD ===== */
-  
-  .product-card {
-    padding: 4px;
-    border-radius: 10px;
-  }
-
-  .product-body {
-    padding: 4px;
-  }
-
-  /* ===== SELECT WEIGHT ===== */
-  .product-card select,
-  .product-card .weight-dropdown {
-    font-size: 10px;
-    height: 26px;
-    padding: 3px 6px;
-    border-radius: 7px;
-  }
-
-  /* Hide label (already correct, just reinforcing) */
-  .product-card label {
-    display: none;
-  }
-
-  /* ===== QUANTITY ===== */
-  .product-card .quantity-selector {
-    gap: 3px;
-    margin: 4px 0;
-  }
-
-  .product-card .quantity-selector button {
-    width: 20px;
-    height: 20px;
-    font-size: 9px;
-  }
-
-  .product-card .quantity-selector span {
-    min-width: 20px;
-    font-size: 9px;
-  }
-
-  /* ===== ADD TO CART ===== */
-  .product-card .add-cart {
-    font-size: 7.5px;
-    padding: 5px 6px;
-    border-radius: 7px;
-  }
-
-  /* ===== FOOTER ===== */
-  .footer {
-    padding: 18px 12px;
-  }
-
-  .footer-top {
-    gap: 12px;
-  }
-
-  .footer-links h4 {
-    font-size: 13px;
-  }
-
-  .footer-links ul li {
-    font-size: 12.5px;
-    margin-bottom: 3px;
-  }
-
-  .footer-newsletter p {
-    font-size: 12.5px;
-  }
-
-  .newsletter-input input,
-  .newsletter-input button {
-    height: 34px;
-    font-size: 12px;
-  }
-
-  .social-icons span {
-    width: 32px;
-    height: 32px;
-    font-size: 15px;
-  }
-
-  .footer-bottom {
-    font-size: 11.5px;
-  }
-}
-
-
-@media (max-width: 510px) {
+@media (max-width: 550px) {
   .category-section {
     display: none !important;
   }
 }
 @media (max-width: 510px) {
-  .product-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  /* If last row has single item, make it full width */
-  
-}
-
-html, body {
-  max-width: 100%;
-  overflow-x: hidden;
-}
-
-@media (max-width: 510px) {
   .category-section {
     display: none !important;
   }
-
-  .main {
-    padding-left: 16px;
-    padding-right: 16px;
-  }
-  .main-right img {
-    max-width: 100%;
-    display: block;
-  }
 }
-
-
-
-.product-grid {
-  width: 100%;
-  overflow-x: hidden;
-}
-/*to make product card fill the grid by reducing padding*/
-@media (max-width: 510px) {
-  .featured {
-    padding-left: 8px !important;
-    padding-right: 8px !important;
-  }
-  
-  .product-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-    padding: 4px; /* 🔥 KEY CHANGE */
-  }
-  .product-card {
-    width: 100%;
-    max-width: 100%;
-  }
-
-}
-/*benifits for <=412px*/
-@media (max-width: 360px) {
-
-  /* ===== BENEFITS SECTION ===== */
-  .benefits {
-    padding: 20px 12px;   /* reduce section height */
-  }
-
-  .benefits h2 {
-    font-size: 18px;
-    margin-bottom: 6px;
-  }
-
-  .benefits > p {
-    font-size: 12.5px;
-    margin-bottom: 14px;
-    line-height: 1.4;
-  }
-
-  /* ===== BENEFITS GRID ===== */
-  .benefits-grid {
-    gap: 8px;   /* tighter spacing */
-  }
-
-  /* ===== BENEFIT CARD ===== */
-  .benefit-card {
-    padding: 10px 12px;   /* 🔥 key reduction */
-    border-radius: 12px;
-  }
-
-  .benefit-card h3 {
-    font-size: 13.5px;
-    margin-bottom: 3px;
-  }
-
-  .benefit-card p {
-    font-size: 12px;
-    line-height: 1.35;
-  }
-}
-
 
