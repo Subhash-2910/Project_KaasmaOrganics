@@ -1,7 +1,7 @@
 import React from "react";
 import { FiSearch, FiUser, FiShoppingCart } from "react-icons/fi";
 import { Link } from "react-router-dom";
-import logo from "../assets1/images/kasmalogo.jpeg"
+import logo from "../assets/images/kasmalogo.jpeg"
 
 function Navbar() {
   return (

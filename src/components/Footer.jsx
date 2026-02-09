@@ -1,5 +1,5 @@
 import { FiFacebook, FiInstagram, FiTwitter } from "react-icons/fi";
-import logo from "../assets1/images/kasmalogo.jpeg"
+import logo from "../assets/images/kasmalogo.jpeg"
 
 export default function Footer() {
   return (

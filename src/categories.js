@@ -1,10 +1,10 @@
 // import { FiApple, FiCoffee } from "react-icons/fi";
 // import { GiFruitBowl } from "react-icons/gi";
 // import { TbSalad } from "react-icons/tb";
-import fruitpowders from "./assets1/images/fruitpowders.jpeg";
-import fruitsnacks from "./assets1/images/fruitsnacks.jpeg";
-import vegiepowders from "./assets1/images/vegiepowders.jpeg";
-import vegiesnacks from "./assets1/images/vegiesnacks.jpeg";
+import fruitpowders from "./assets/images/fruitpowders.jpeg";
+import fruitsnacks from "./assets/images/fruitsnacks.jpeg";
+import vegiepowders from "./assets/images/vegiepowders.jpeg";
+import vegiesnacks from "./assets/images/vegiesnacks.jpeg";
 
 const categories = [
   {
