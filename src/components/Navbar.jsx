@@ -1,24 +1,13 @@
-import React, { useContext } from "react";
+import React from "react";
 import { FiSearch, FiUser, FiShoppingCart } from "react-icons/fi";
-import logo from "../assets1/images/kasmalogo.jpeg";
-import { useCart } from "../context/CartContext.jsx";
+import { Link } from "react-router-dom";
+import logo from "../assets1/images/kasmalogo.jpeg"
 
 function Navbar() {
-  const { cartCount, setIsCartOpen } = useCart();
-  
-  const handleScroll = (e, id) => {
-    e.preventDefault();
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   return (
     <div>
-      
       <div className="banner">
-         100% Organic Certified Products
+        🌿 Free Shipping on Orders Above $50 | 100% Organic Certified Products
       </div>
       <nav className="navbar">
         <div className="logo">
@@ -28,51 +17,26 @@ function Navbar() {
 
         <ul className="nav-links">
           <li>
-            <a href="#home" onClick={(e) => handleScroll(e, 'home')}>Home</a>
+            <Link to="/">Home</Link>
           </li>
           <li>
-            <a href="#shop" onClick={(e) => handleScroll(e, 'shop')}>Shop</a>
+            <Link to="/shop">Shop</Link>
           </li>
           <li>
-            <a href="#about" onClick={(e) => handleScroll(e, 'about')}>About</a>
+            <Link to="/about">About</Link>
           </li>
           <li>
-            <a href="#benefits" onClick={(e) => handleScroll(e, 'benefits')}>Benefits</a>
+            <Link to="/benefits">Benefits</Link>
           </li>
           <li>
-            <a href="#contact" onClick={(e) => handleScroll(e, 'contact')}>Contact</a>
+            <Link to="/contact">Contact</Link>
           </li>
         </ul>
 
         <div className="nav-icons">
-          <FiSearch className="nav-icon" />
-          <FiUser className="nav-icon" />
-          <div 
-            className="cart-icon-container" 
-            onClick={() => setIsCartOpen(true)}
-            style={{ position: 'relative', cursor: 'pointer' }}
-          >
-            <FiShoppingCart className="nav-icon" />
-            {cartCount > 0 && (
-              <span style={{
-                position: 'absolute',
-                top: '-8px',
-                right: '-8px',
-                backgroundColor: '#ef4444',
-                color: 'white',
-                borderRadius: '50%',
-                width: '20px',
-                height: '20px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                fontSize: '0.75rem',
-                fontWeight: 'bold'
-              }}>
-                {cartCount}
-              </span>
-            )}
-          </div>
+          <FiSearch />
+          <FiUser />
+          <FiShoppingCart />
         </div>
       </nav>
     </div>
