@@ -50,19 +50,15 @@ export default function Footer() {
           </div>
 
           <div className="social-icons">
-            
-            <a href="https://www.facebook.com/share/1H8PPG1XWX/" target="_blank" rel="noopener noreferrer">
-              <span>
-                <FiFacebook  />
-              </span>
-            </a>
-            <a href="https://www.instagram.com/kasma_organics?igsh=eWZqaDZwMTc0eThn" target="_blank" rel="noopener noreferrer">
-              <span>
-                <FiInstagram />
-              </span>
-            </a>
-            
-           
+            <span>
+              <FiFacebook />
+            </span>
+            <span>
+              <FiInstagram />
+            </span>
+            <span>
+              <FiTwitter />
+            </span>
           </div>
         </div>
       </div>

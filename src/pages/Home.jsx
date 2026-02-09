@@ -9,21 +9,12 @@ import FeaturedProducts from "../components/FeaturedProducts";
 function Home() {
   return (
     <div>
-      <div id="home">
-        <Navbar />
-        <Main />
-      </div>
-      <div id="shop">
-        <CategorySection />
-      </div>
+      <Navbar />
+      <Main />
+      <CategorySection />
       <FeaturedProducts />
-      <div id="about">
-        <BenefitsSection />
-      </div>
-      
-      <div id="contact">
-        <Footer />
-      </div>
+      <BenefitsSection />
+      <Footer />
     </div>
   );
 }
