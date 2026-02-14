@@ -2,8 +2,11 @@ import React from "react";
 import { FiSearch, FiUser, FiShoppingCart } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import logo from "../assets/images/kasmalogo.jpeg"
+import Cart from "./Cart";
+import { useState } from "react";
 
 function Navbar() {
+    const [isCartOpen, setIsCartOpen] = useState(false);
   return (
     <div>
       <div className="banner">
@@ -15,30 +18,18 @@ function Navbar() {
           <span>Kasma Organics</span>
         </div>
 
-        <ul className="nav-links">
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/shop">Shop</Link>
-          </li>
-          <li>
-            <Link to="/about">About</Link>
-          </li>
-          <li>
-            <Link to="/benefits">Benefits</Link>
-          </li>
-          <li>
-            <Link to="/contact">Contact</Link>
-          </li>
-        </ul>
-
         <div className="nav-icons">
           <FiSearch />
           <FiUser />
-          <FiShoppingCart />
+          {/* CART ICON CLICKABLE */}
+          <FiShoppingCart
+            style={{ cursor: "pointer" }}
+            onClick={() => setIsCartOpen(true)}
+          />
         </div>
       </nav>
+       {/* Cart Drawer */}
+      <Cart isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
     </div>
   );
 }
