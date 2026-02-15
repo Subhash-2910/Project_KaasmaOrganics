@@ -63,7 +63,6 @@ function ProductCard(props) {
             dispatch({ type: "Add", product: props });
           }}
         >
-          {/* <FiShoppingCart /> */}
           Add to Cart
         </button>
       </div>

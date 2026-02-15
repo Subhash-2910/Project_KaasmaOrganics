@@ -1,5 +1,4 @@
 import React from "react";
-// import { FiShoppingCart } from "react-icons/fi";
 import featuredProducts from "../featuredProducts";
 import ProductCard from "./ProductCard";
 

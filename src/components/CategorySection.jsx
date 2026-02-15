@@ -7,7 +7,6 @@ function createCard(category) {
     <CategoryCard
       key={category.id}
       image={category.image}
-    //   icon={category.icon}
       title={category.title}
       desc={category.desc}
     />

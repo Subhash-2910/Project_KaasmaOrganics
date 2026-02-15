@@ -8,7 +8,6 @@ function CategoryCard(props) {
     >
       <div className="overlay">
         <div className="content">
-          {/* <span className="icon">{props.icon}</span> */}
           <h3>{props.title}</h3>
           <p>{props.desc}</p>
         </div>
