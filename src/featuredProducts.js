@@ -10,6 +10,7 @@ import Banana1 from "./assets/images/Banana1.png";
 import Banana2 from "./assets/images/Banana2.png";
 const featuredProducts = [
   {
+    id:1,
     name: "Organic Beetroot Powder",
     category: "Vegetable Powders",
     desc: "Naturally vibrant and earthy beetroot goodness.",
@@ -22,6 +23,7 @@ const featuredProducts = [
     offer: "24% OFF",
   },
   {
+    id:2,
     name: "Organic Onion Powder",
     category: "Vegetable Powders",
     desc: "Rich onion flavor, perfect for everyday cooking",
@@ -34,6 +36,7 @@ const featuredProducts = [
     offer: "24% OFF",
   },
   {
+    id:3,
     name: "Organic Orange Powder",
     category: "Fruit Powders",
     desc: "Fresh and perfect citrus taste from real fresh oranges.",
@@ -46,6 +49,7 @@ const featuredProducts = [
     offer: "22% OFF",
   },
   {
+    id:4,
     name: "Organic Pineapple powder",
     category: "Fruit Powders",
     desc: "Tropical pineapple flavor with natural sweetness",
@@ -58,6 +62,7 @@ const featuredProducts = [
     offer: null,
   },
   {
+    id:5,
     name: "Organic Banana Powder",
     category: "Fruit Powders",
     desc: " Smooth, naturally sweet banana powder",

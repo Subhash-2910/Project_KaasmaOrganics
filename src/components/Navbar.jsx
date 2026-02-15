@@ -4,9 +4,12 @@ import { Link } from "react-router-dom";
 import logo from "../assets/images/kasmalogo.jpeg"
 import Cart from "./Cart";
 import { useState } from "react";
+import { useContext } from "react";
+import { CartContext } from "../features/ContextProvider";
 
 function Navbar() {
     const [isCartOpen, setIsCartOpen] = useState(false);
+    const { cart } = useContext(CartContext);
   return (
     <div>
       <div className="banner">
@@ -26,6 +29,7 @@ function Navbar() {
             style={{ cursor: "pointer" }}
             onClick={() => setIsCartOpen(true)}
           />
+           {cart.length}
         </div>
       </nav>
        {/* Cart Drawer */}

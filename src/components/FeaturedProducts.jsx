@@ -8,6 +8,7 @@ function createCard(fProduct, index) {
     <ProductCard
       // also works  key={featuredProducts.indexOf(fProduct)}
       key={index}
+      id={fProduct.id}
       name={fProduct.name}
       category={fProduct.category}
       desc={fProduct.desc}
